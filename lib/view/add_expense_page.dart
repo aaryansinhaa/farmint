@@ -1,14 +1,13 @@
 import 'package:farmint_admin_assignment/common/constants/colors.dart';
 import 'package:farmint_admin_assignment/common/widgets/bottomsheet.dart';
 import 'package:farmint_admin_assignment/common/widgets/toprow.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AddExpensePage extends StatelessWidget {
   static const String routeName = "/addExpense";
   AddExpensePage({super.key});
   final List<String> buttonName = ["Income", "Expense", "Transfer"];
-
+  final currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,10 +43,30 @@ class AddExpensePage extends StatelessWidget {
                     itemCount: 3,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) => InkWell(
+                          splashColor: Colors.transparent,
+                          borderRadius: BorderRadius.circular(10),
                           onTap: () {},
-                          child: Text(
-                            buttonName[index],
-                            style: TextStyle(color: Colors.black),
+                          child: Container(
+                            height: 45,
+                            width: 70,
+                            margin: EdgeInsets.symmetric(
+                                horizontal: 25, vertical: 14),
+                            decoration: BoxDecoration(
+                              color: index == currentIndex
+                                  ? ColorConstants.blueGrayTop
+                                  : Colors.transparent,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Center(
+                              child: Text(
+                                buttonName[index],
+                                style: TextStyle(
+                                  color: index == currentIndex
+                                      ? Colors.white
+                                      : Colors.black,
+                                ),
+                              ),
+                            ),
                           ),
                         )),
               )
